@@ -1,0 +1,9 @@
+<SaveData>
+    <HighScores>
+        <HighScoreEntry Name="kos">1000</HighScoreEntry>
+        <HighScoreEntry Name="oki">3000</HighScoreEntry>
+        <HighScoreEntry Name="ooh">3200</HighScoreEntry>
+        <HighScoreEntry Name="wee">3500</HighScoreEntry>
+    </HighScores>
+    <GameData Lives="0" Points="3200"/>
+</SaveData>
