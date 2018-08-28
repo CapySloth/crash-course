@@ -9,4 +9,29 @@ It is year 2022, aliens have invaded planet earth. Nations all around the globe 
 For humanity to stand a chance a new generation of pilots has to be made. An Elite military unit  made up of exceptional people that have the aptitude and attitude to be at altitude is made, you are one of these people. 
 
 There isn’t much time, so as soon as pilots learn to control a fighter jet they are put through an altered reality crash course. The course takes you through time periods and pitches you against historical aircraft.  The objective of the game is to pass the course, so that you may join the fight for humanity. 
- Only pilots that pass the course are trusted to join the fight for earth.
+
+Only pilots that pass the course are trusted to join the fight for earth.
+
+## Basic Rules
+### Controls
+- Press the Left and Right keys on the keyboard, to control your jet. 
+- Press the Space key on the keyboard, to shoot.
+- Objective - Gain Points
+  - Destroy enemy ships for points. (100 points)
+  - Destroy mothership of time period. (3000 points) (to jump to next period).
+  - Enemy types change and get stronger depending on time period.(Round to Round)
+- Losing Conditions
+  - User reaches Game Over when all lives are lost.
+  - An enemy  lands a shot on the player’s jet and it explodes, life is lost. 
+  - An enemy collides with player’s jet, life is lost.
+- Player and Enemy Types
+  - Player’s Jet
+    - 3 lives. (playerLives = 3) 
+    - 60 bullets on screen at a time. (maxBullets vector owned by Player)
+    - Reasonable firing rate  (5 frames)
+  - Enemy Aircraft
+    - 2 bullets to take down (mArmor = 2)
+    - 10 - 20 bullets on screen at a time
+    - Slower bullet travel time/firing rate 
+
+
