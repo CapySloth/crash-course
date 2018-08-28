@@ -33,5 +33,6 @@ Only pilots that pass the course are trusted to join the fight for earth.
     - 2 bullets to take down (mArmor = 2)
     - 10 - 20 bullets on screen at a time
     - Slower bullet travel time/firing rate 
-
+  - Mothership Aircraft 
+    - 7 bullets to take down 
 
