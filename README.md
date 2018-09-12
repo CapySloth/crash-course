@@ -4,7 +4,7 @@ The player assumes the role of a pilot of a futuristic fighter jet, trying to re
 
 ## Homage
 It is year 2022, aliens have invaded planet earth. Nations all around the globe have united their military resources, and launched offenses against the aggressors. Very quickly it became apparent that using unmanned fighter jets was not effective in combating the aliens, machines would often fail to adapt to alien fighters that seem to evolve right in the midst of a dog fight. It was essential for humanity to take control of iron wings once again, but ever since the invention of self-piloting planes, “Pilot” as a profession has all but disappeared. 
-![Screenshot](TimePilot.png)
+![Screenshot](TimePilot.jpg)
 
 For humanity to stand a chance a new generation of pilots has to be made. An Elite military unit  made up of exceptional people that have the aptitude and attitude to be at altitude is made, you are one of these people. 
 
