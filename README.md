@@ -1,5 +1,6 @@
 # Crash Course - Time Pilot Homage
-![Screenshot](gameplay.gif)
+
+![Screenshot](gameplay2.gif)
 ## Homage
 It is year 2022, aliens have invaded planet earth. Nations all around the globe have united their military resources, and launched offenses against the aggressors. Very quickly it became apparent that using unmanned fighter jets was not effective in combating the aliens, machines would often fail to adapt to alien fighters that seem to evolve right in the midst of a dog fight. It was essential for humanity to take control of iron wings once again, but ever since the invention of self-piloting planes, “Pilot” as a profession has all but disappeared. 
 
