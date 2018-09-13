@@ -1,4 +1,9 @@
 <SaveData>
-    <HighScores/>
-    <GameData Lives="3" Points="0"/>
+    <HighScores>
+        <HighScoreEntry Name="KOS">1200</HighScoreEntry>
+        <HighScoreEntry Name="fun">800</HighScoreEntry>
+        <HighScoreEntry Name="kos">2000</HighScoreEntry>
+        <HighScoreEntry Name="yey">200</HighScoreEntry>
+    </HighScores>
+    <GameData Lives="0" Points="200"/>
 </SaveData>
