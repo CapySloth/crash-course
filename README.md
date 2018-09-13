@@ -8,10 +8,12 @@ For humanity to stand a chance a new generation of pilots has to be made. An Eli
 There isn’t much time, so as soon as pilots learn to control a fighter jet they are put through an altered reality crash course. The course takes you through time periods and pitches you against historical aircraft.  The objective of the game is to pass the course, so that you may join the fight for humanity. 
 
 Only pilots that pass the course are trusted to join the fight for earth.
+
 ![Screenshot](CrashCourse.png)
 
 ## Original - Time Pilot
 The player assumes the role of a pilot of a futuristic fighter jet, trying to rescue fellow pilots trapped in different time eras. The player must fight off hordes of enemy craft. The background moves in the opposite direction to the player's plane, rather than the other way around; the player's plane always remains in the center.
+
 ![Screenshot](TimePilot.png)
 
 ## Basic Rules
