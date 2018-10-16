@@ -1,3 +1,7 @@
+#include <iostream>
+
+#include "tinyxml2.h"
+
 #include "Game.h"
 #include "Cloud.h"
 #include "InputManager.h"
@@ -8,15 +12,13 @@
 #include "MainMenuGS.h"
 #include "HighScoreGS.h"
 
-#include "tinyxml2.h"
-#include <iostream>
+
 
 Game::Game()
 	: mScreenWidth(700)
 	, mScreenHeight(700)
 	, mLivesText("LIVES | 3", *FontManager::getInstance().getAsset("Assets/thunderstrike.ttf"))
 	, mPointsText("SCORE | 0", *FontManager::getInstance().getAsset("Assets/thunderstrike.ttf"))
-	, trail(new Trail())
 	, playerLives(3)
 	, playerPoints(0)
 
@@ -47,7 +49,7 @@ if (InputManager::getInstance().wasKeyReleased(InputManager::GK_ESCAPE)) {
 
 ProcessEvents();
 #pragma region Cloud Updates
-	for (int i = 0; i < mClouds3.size(); i++) {
+	for (int i = 0; i < mCloudawdadwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwws3.size(); i++) {
 		mClouds3[i].Update(delta);
 		mClouds3[i].CalculateTragectory(delta, mShip->getHeading());
 	}

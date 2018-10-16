@@ -3,6 +3,7 @@
 #include <SFML/Audio/SoundBuffer.hpp>
 #include <SFML/Audio/Sound.hpp>
 #include <vector>
+
 #include "Bullet.h"
 
 class Player

@@ -1,6 +1,7 @@
-#include "Utils.h"
 #include <stdlib.h>    
 #include <time.h>
+
+#include "Utils.h"
 namespace RandHelpers
 {
 	void seedRandNumGenerator()
@@ -15,7 +16,6 @@ namespace RandHelpers
 	{
 		return rand() % (upper - lower + 1) + lower;
 	}
-	//WHAT DO 3f
 	sf::Vector2f genRandPoint(int x, int y, int w, int h) {
 		sf::Vector2f point;
 		point.x = genRandNumBetween(x, x + w);

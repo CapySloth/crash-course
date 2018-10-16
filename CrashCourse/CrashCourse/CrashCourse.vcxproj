@@ -152,14 +152,12 @@
     <ClCompile Include="Animated.cpp" />
     <ClCompile Include="AssetManager.cpp" />
     <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="ButtonTestGS.cpp" />
     <ClCompile Include="Cloud.cpp" />
     <ClCompile Include="Die.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameEvents.cpp" />
     <ClCompile Include="GameStateManager.cpp" />
-    <ClCompile Include="GUI_Button.cpp" />
     <ClCompile Include="HighScoreGS.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -167,9 +165,7 @@
     <ClCompile Include="NewHighScoreGS.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SplashGS.cpp" />
-    <ClCompile Include="TestGS.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
-    <ClCompile Include="Trail.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -183,19 +179,15 @@
     <ClInclude Include="Die.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="GameEvents.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="GameStateManager.h" />
-    <ClInclude Include="GUI_Button.h" />
     <ClInclude Include="HighScoreGS.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="MainMenuGS.h" />
     <ClInclude Include="NewHighScoreGS.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SplashGS.h" />
-    <ClInclude Include="TestGS.h" />
     <ClInclude Include="tinyxml2.h" />
-    <ClInclude Include="Trail.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>

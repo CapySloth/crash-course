@@ -1,13 +1,12 @@
+#include <SFML/Graphics.hpp>
+#include <iostream>
+
 #include "GameStateManager.h"
 #include "GameState.h"
 #include "InputManager.h"
 
 #include "MainMenuGS.h"
 #include "NewHighScoreGS.h"
-
-#include <SFML/Graphics.hpp>
-
-#include <iostream>
 //GameStateManager *GameStateManager::theInstance = nullptr;
 
 GameStateManager::GameStateManager()

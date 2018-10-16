@@ -1,6 +1,6 @@
-#include "InputManager.h"
 #include <iostream>
 
+#include "InputManager.h"
 bool InputManager::isKeyUp(GameKey gk) {
 	return !mCurrentKeyState[mKeyMap[gk]];
 }

@@ -5,7 +5,6 @@
 #include "Player.h"
 #include "Cloud.h"
 #include "Animated.h"
-#include "Trail.h"
 
 #include <SFML\Audio\SoundBuffer.hpp>
 #include <SFML\Audio\Music.hpp>
@@ -21,8 +20,6 @@ class Game :
 	int					eCounter = 0; //enemy Counter
 
 	sf::ContextSettings settings;
-
-	Trail *trail;
 
 	sf::Color black = { 0, 0, 0, 255 };
 	sf::Color orange = { 255, 140, 0, 255 };
@@ -108,20 +105,16 @@ private:
 	virtual void Deinit() override;
 	virtual bool IsInit() override;
 	
-	//void OnWindowResized(int w, int h);
 	void OnQuit();
 	void Shutdown();
 	void Spawn();
 	void DeSpawn();
 	void Reuse();
 
-	/*virtual sf::Text &getTitleText() { return mTitle; }
-	virtual sf::Text &getNewLevelText() { return mNewLevel; }
-	virtual sf::Text &getLoadLevelText() { return mLoadLevel; }
-	virtual sf::Text &getQuitText() { return mQuit; }*/
 	bool WriteGameSetup();
 private:
-	unsigned int eTimer;//Enemy Timer
+	//Enemy timer
+	unsigned int eTimer;
 
 	sf::Text mLivesText;
 	sf::Text mPointsText;

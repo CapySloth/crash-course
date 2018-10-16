@@ -57,9 +57,6 @@
     <ClCompile Include="NewHighScoreGS.cpp">
       <Filter>Source Files\Game States</Filter>
     </ClCompile>
-    <ClCompile Include="ButtonTestGS.cpp">
-      <Filter>Source Files\Game States</Filter>
-    </ClCompile>
     <ClCompile Include="AssetManager.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
@@ -70,9 +67,6 @@
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="GameStateManager.cpp">
-      <Filter>Source Files\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="GUI_Button.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
@@ -105,12 +99,6 @@
     <ClCompile Include="SplashGS.cpp">
       <Filter>Source Files\Game States</Filter>
     </ClCompile>
-    <ClCompile Include="Trail.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="TestGS.cpp">
-      <Filter>Source Files\Game States</Filter>
-    </ClCompile>
     <ClCompile Include="tinyxml2.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
@@ -135,9 +123,6 @@
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h">
-      <Filter>Header Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="GUI_Button.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Die.h">
@@ -176,17 +161,8 @@
     <ClInclude Include="SplashGS.h">
       <Filter>Header Files\Game States</Filter>
     </ClInclude>
-    <ClInclude Include="Trail.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="TestGS.h">
-      <Filter>Header Files\Game States</Filter>
-    </ClInclude>
     <ClInclude Include="tinyxml2.h">
       <Filter>Header Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="GameEvents.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

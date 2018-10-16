@@ -1,18 +1,25 @@
 #pragma once
 #include <SFML\Graphics.hpp>
+
 #include "Bullet.h"
 
 class Aircraft
 {
 	int mArmor;
+
 	float velX;
 	float velY;
+
 	float mHeading;
+
 	float mDirX;
 	float mDirY;
+
 	sf::Vector2f mPos;
 	sf::Texture *mTexture;
+
 	bool active;
+
 	sf::IntRect dstRect;
 
 public:

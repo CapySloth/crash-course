@@ -1,3 +1,7 @@
+#include <iostream>
+
+#include "tinyxml2.h"
+
 #include "InputManager.h"
 #include "AssetManager.h"
 #include "GameStateManager.h"
@@ -5,9 +9,6 @@
 #include "MainMenuGS.h"
 #include "HighScoreGS.h"
 #include "Game.h"
-
-#include "tinyxml2.h"
-#include <iostream>
 
 HighScoreGS::HighScoreGS()
 	: mTitle("HIGH SCORES", *FontManager::getInstance().getAsset("Assets/thunderstrike.ttf")),

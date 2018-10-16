@@ -8,9 +8,7 @@ class Entity
 {
 	sf::IntRect mRect;
 	sf::Color mColor;
-
 public:
-
 	Entity(float x, float y, float w, float h, sf::Color color);
 
 	int Width() const { return mRect.width; }
