@@ -42,31 +42,24 @@ void Game::Spawn() {
 		Aircraft *enemy;
 		switch (decision) {
 		case 0://Spawn Up
-			enemy = new Aircraft(arm, 0.0f, 0.0f, 0.0f, sf::Vector2f(RandHelpers::genRandNumBetween(20, mScreenWidth - 20)
-				,RandHelpers::genRandNumBetween(-30, 0)), texture);
-
+			enemy = new Aircraft(arm, sf::Vector2f(0.0f, 0.0f), 0.0f, sf::Vector2f(RandHelpers::genRandNumBetween(20, mScreenWidth - 20),RandHelpers::genRandNumBetween(-30, 0)), texture);
 			mEnemies.push_back(enemy);
 			eCounter++;
 			break;
 		case 1:
 			//Spawn somewhere to the Right 
-			enemy = new Aircraft(arm, 0.0f, 0.0f, 0.0f, sf::Vector2f(RandHelpers::genRandNumBetween(mScreenWidth, mScreenWidth + 20)
-				,RandHelpers::genRandNumBetween(0, mScreenHeight)), texture);
-
+			enemy = new Aircraft(arm, sf::Vector2f(0.0f, 0.0f), 0.0f, sf::Vector2f(RandHelpers::genRandNumBetween(mScreenWidth, mScreenWidth + 20), RandHelpers::genRandNumBetween(0, mScreenHeight)), texture);
 			mEnemies.push_back(enemy);
 			eCounter++;
 			break;
 		case 2:
 			//Spawn to Left or Up
-			enemy = new Aircraft(arm, 0.0f, 0.0f, 0.0f, sf::Vector2f(RandHelpers::genRandNumBetween(-20, 0)
-				,RandHelpers::genRandNumBetween(0, mScreenHeight)), texture);
+			enemy = new Aircraft(arm, sf::Vector2f(0.0f, 0.0f), 0.0f, sf::Vector2f(RandHelpers::genRandNumBetween(-20, 0), RandHelpers::genRandNumBetween(0, mScreenHeight)), texture);
 			mEnemies.push_back(enemy);
 			eCounter++;
 			break;
 		case 3://Spawn At the bottom
-			enemy = new Aircraft(arm, 0.0f, 0.0f, 0.0f, sf::Vector2f(RandHelpers::genRandNumBetween(0, mScreenWidth + 20)
-				,RandHelpers::genRandNumBetween(mScreenHeight, mScreenHeight + 20)), texture);
-
+			enemy = new Aircraft(arm, sf::Vector2f(0.0f, 0.0f), 0.0f, sf::Vector2f(RandHelpers::genRandNumBetween(0, mScreenWidth + 20), RandHelpers::genRandNumBetween(mScreenHeight, mScreenHeight + 20)), texture);
 			mEnemies.push_back(enemy);
 			eCounter++;
 			break;
@@ -79,40 +72,33 @@ void Game::Spawn() {
 }
 
 void Game::Reuse() {
-	for (std::vector<Aircraft*>::iterator it = mEnemies.begin();
-		it != mEnemies.end(); it++) {
+	for (std::vector<Aircraft*>::iterator it = mEnemies.begin(); it != mEnemies.end(); it++) {
 		if (!(*it)->getActive()) {
 			int decision = rand() % 4;
 			switch (decision) {
 			case 0://Spawn Up
-				(*it)->setPosition(sf::Vector2f(RandHelpers::genRandNumBetween(mScreenWidth, mScreenWidth + 100),RandHelpers::genRandNumBetween(mScreenHeight, mScreenHeight + 100)));
-				(*it)->setArmor(arm);
-				(*it)->setActive(true);
+				Respawn(sf::Vector2f(RandHelpers::genRandNumBetween(mScreenWidth, mScreenWidth + 100), RandHelpers::genRandNumBetween(mScreenHeight, mScreenHeight + 100)),it);
 				break;
-
 			case 1:
 				//Spawn somewhere to the Right 
-				(*it)->setPosition(sf::Vector2f(RandHelpers::genRandNumBetween(mScreenWidth, mScreenWidth + 20),RandHelpers::genRandNumBetween(0, mScreenHeight)));
-				(*it)->setArmor(arm);
-				(*it)->setActive(true);
-				eCounter++;
+				Respawn(sf::Vector2f(RandHelpers::genRandNumBetween(mScreenWidth, mScreenWidth + 20), RandHelpers::genRandNumBetween(0, mScreenHeight)), it);
 				break;
 			case 2:
 				//Spawn to Left or Up
-				(*it)->setPosition(sf::Vector2f(RandHelpers::genRandNumBetween(-20, 0),RandHelpers::genRandNumBetween(0, mScreenHeight)));
-				(*it)->setArmor(arm);
-				(*it)->setActive(true);
-				eCounter++;
+				Respawn(sf::Vector2f(RandHelpers::genRandNumBetween(-20, 0), RandHelpers::genRandNumBetween(0, mScreenHeight)), it);
 				break;
 			case 3://Spawn At the bottom
-				(*it)->setPosition(sf::Vector2f(RandHelpers::genRandNumBetween(0, mScreenWidth + 20),RandHelpers::genRandNumBetween(mScreenHeight, mScreenHeight + 20)));
-				(*it)->setArmor(arm);
-				(*it)->setActive(true);
-				eCounter++;
+				Respawn(sf::Vector2f(RandHelpers::genRandNumBetween(0, mScreenWidth + 20), RandHelpers::genRandNumBetween(mScreenHeight, mScreenHeight + 20)), it);
 				break;
 			}
-
 		}
 	}
+}
+
+void Game::Respawn(sf::Vector2f spawnCoordinates, std::vector<Aircraft*>::iterator it) {
+	(*it)->setPosition(spawnCoordinates);
+	(*it)->setArmor(arm);
+	(*it)->setActive(true);
+	eCounter++;
 }
 

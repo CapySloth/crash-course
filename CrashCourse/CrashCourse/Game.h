@@ -1,4 +1,8 @@
 #pragma once
+#include <SFML\Audio\SoundBuffer.hpp>
+#include <SFML\Audio\Music.hpp>
+#include <SFML\Graphics.hpp>
+
 #include "GameState.h"
 #include "Entity.h"
 #include "Aircraft.h"
@@ -6,9 +10,6 @@
 #include "Cloud.h"
 #include "Animated.h"
 
-#include <SFML\Audio\SoundBuffer.hpp>
-#include <SFML\Audio\Music.hpp>
-#include <SFML\Graphics.hpp>
 
 class Game :
 	public AGameState
@@ -60,8 +61,6 @@ class Game :
 	int expPosX;
 	int expPosY;
 public:
-
-
 	static Game &getInstance() {
 		static Game instance;
 		return instance;
@@ -79,7 +78,6 @@ public:
 	int getPlayerLives() {
 		return playerLives;
 	}
-	
 	void setPlayerPoints(int points) {
 		playerPoints = points;
 	}
@@ -108,10 +106,10 @@ private:
 	void OnQuit();
 	void Shutdown();
 	void Spawn();
+	void Respawn(sf::Vector2f spawnCoordinates, std::vector<Aircraft*>::iterator it);
 	void DeSpawn();
 	void Reuse();
 
-	bool WriteGameSetup();
 private:
 	//Enemy timer
 	unsigned int eTimer;

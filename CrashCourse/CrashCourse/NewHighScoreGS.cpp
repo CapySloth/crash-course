@@ -1,10 +1,13 @@
-#include "NewHighScoreGS.h"
-#include "HighScoreGS.h"
+#include <iostream>
+
 #include "Game.h"
+
 #include "InputManager.h"
 #include "AssetManager.h"
 #include "GameStateManager.h"
-#include <iostream>
+
+#include "NewHighScoreGS.h"
+#include "HighScoreGS.h"
 
 NewHighScoreGS::NewHighScoreGS()
 	: mTitle("NEW HIGHSCORE", *FontManager::getInstance().getAsset("Assets/thunderstrike.ttf")),
@@ -74,14 +77,6 @@ void NewHighScoreGS::Update(float delta)
 				GameStateManager::getInstance().Push(HighScoreGS::getInstance());
 			}
 		}
-		//else if (MainMenuGS::getInstance().getLoadLevelText().getGlobalBounds().contains(localPosition.x, localPosition.y)) {
-		//	std::cout << "Load Level" << std::endl;
-		//	//GameStateManager::getInstance().Push(TerrainGeneratorGS::getInstance());
-		//}
-		//else if (MainMenuGS::getInstance().getQuitText().getGlobalBounds().contains(localPosition.x, localPosition.y)) {
-		//	std::cout << "Quit" << std::endl;
-		//	//GameStateManager::getInstance().Push(TerrainGeneratorGS::getInstance());
-		//}
 	}
 
 

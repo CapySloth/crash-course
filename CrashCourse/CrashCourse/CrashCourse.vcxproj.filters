@@ -113,9 +113,6 @@
     <ClInclude Include="NewHighScoreGS.h">
       <Filter>Header Files\Game States</Filter>
     </ClInclude>
-    <ClInclude Include="ButtonTestGS.h">
-      <Filter>Header Files\Game States</Filter>
-    </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Header Files\Utility</Filter>
     </ClInclude>

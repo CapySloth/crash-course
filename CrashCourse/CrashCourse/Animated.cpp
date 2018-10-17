@@ -26,13 +26,12 @@ void Animated::render(sf::RenderWindow &window, int x, int y, sf::IntRect *sprit
 {
 	sf::IntRect quad = { x, y, mWidth, mHeight };
 
-	
-	//if (sprite != nullptr) {
-	quad.width = sprite->width;
-	quad.height = sprite->height;
-	quad.left = sprite->left;
-	quad.top = sprite->top;
-	//}
+	if (sprite != nullptr) {
+		quad.width = sprite->width;
+		quad.height = sprite->height;
+		quad.left = sprite->left;
+		quad.top = sprite->top;
+	}
 
 	sf::Sprite explosion(*texture);
 	//explosion.setScale();//Set width of sprite 46

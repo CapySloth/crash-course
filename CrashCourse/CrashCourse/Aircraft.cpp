@@ -12,39 +12,29 @@ Aircraft::Aircraft() {
 Aircraft::~Aircraft() {
 }
 
-Aircraft::Aircraft(int armor, float speedX, float speedY, float dir, sf::Vector2f pos, sf::Texture *texture)
+Aircraft::Aircraft(int armor, sf::Vector2f speed, float dir, sf::Vector2f pos, sf::Texture *texture)
 	: mArmor(armor)
-	, velX(speedX)
-	, velY(speedY)
+	, mVelocity(speed)
 	, mHeading(dir)
-	, mPos(pos)
+	, mPosition(pos)
 	, mTexture(texture)
 	, active(true)
 {
 }
 
-sf::Vector2f Aircraft::getPosition() const {
-	return mPos;
-}
-
-void Aircraft::setPosition(sf::Vector2f pos) {
-	mPos = pos;
-}
-
 void Aircraft::Reset() {
 	mArmor = 2;
-	velX = 0.0f;
-	velY = 0.0f;
+	mVelocity.x = 0.0f;
+	mVelocity.y = 0.0f;
 	mHeading = 0.0f;
-	mDirX = 0.0f;
-	mDirY = 0.0f;
+	mDirection = sf::Vector2f(0.0f, 0.f);
 	active = false;
-	dstRect.top = -1000; //Far far away from player bullet range
+	//Far far away from player bullet range
+	dstRect.top = -1000; 
 	dstRect.left = -1000;
 }
 void Aircraft::Move() {
-	mPos.x += GetVelocityX();
-	mPos.y += GetVelocityY();
+	setPosition(mPosition + getVelocity());
 }
 
 void Aircraft::Fire() {
@@ -56,17 +46,15 @@ void Aircraft::Death() {
 }
 
 void Aircraft::Update(float delta, float pHeading) {
-	//////Spining All logic 
 	sf::Vector2f pPos = { 300.0f, 300.0f };//Player Position
 	sf::Vector2f ePos = { this->getPosition() };//Enemy Position
 
 	float x = 0, y = 0;
 	//Calculate opp/adj
-	x = pPos.x - mPos.x;
-	y = pPos.y - mPos.y;
+	x = pPos.x - ePos.x;
+	y = pPos.y - ePos.y;
 	//Calculate direction angle
 	mHeading = atan2(y, x);
-	//std::cout << mHeading << std::endl;
 	//Calculate hyp
 	float magnitude = sqrt(x*x + y*y);
 	//For player "Counter velocity"
@@ -79,24 +67,19 @@ void Aircraft::Update(float delta, float pHeading) {
 	x *= 1;
 	y *= 1;
 	//Player counter velocity + Enemy going ham to get to center, poor enemy
-	velX = -dirX * delta * 100 + x;
-	velY = -dirY * delta * 100 + y;
+	mVelocity.x = -dirX * delta * 100 + x;
+	mVelocity.y = -dirY * delta * 100 + y;
 	Move();
 	if (ePos.x < -400) {
-		//mRect.x = mRect.x + 600;
 		Reset();
 	}
 	if (ePos.x  > 1000) {
 		Reset();
-		//mRect.x = mRect.x - 600;
 	}
-
 	if (ePos.y < -400) {
-		//mRect.y = mRect.y + 600;
 		Reset();
 	}
 	if (ePos.y > 1000) {
-		//mRect.y = mRect.y - 600;
 		Reset();
 	}
 
@@ -106,8 +89,8 @@ void Aircraft::Draw(sf::RenderWindow & window) {
 	if (this->active) {
 		dstRect = sf::IntRect(0, 0, 32, 32);
 
-		dstRect.left = (int)mPos.x - dstRect.width / 2;
-		dstRect.top = (int)mPos.y - dstRect.height / 2;
+		dstRect.left = (int)mPosition.x - dstRect.width / 2;
+		dstRect.top = (int)mPosition.y - dstRect.height / 2;
 
 		sf::RectangleShape aircraft(sf::Vector2f(dstRect.width, dstRect.height));
 
@@ -116,19 +99,7 @@ void Aircraft::Draw(sf::RenderWindow & window) {
 		
 		float headingDegrees = mHeading * 180.0f / 3.14; //Change to consant PI
 		aircraft.setRotation(headingDegrees);
-		aircraft.setPosition((int)mPos.x, (int)mPos.y);
-		/*sf::RectangleShape boxCollider(sf::Vector2f(dstRect.width, dstRect.height));
-		boxCollider.setPosition(dstRect.left, dstRect.top);
-		boxCollider.setFillColor(sf::Color::Green);
-		window.draw(boxCollider);*/
+		aircraft.setPosition((int)mPosition.x, (int)mPosition.y);
 		window.draw(aircraft);
-		/*	SDL_RenderCopyEx(renderer, mTexture, nullptr, &dstRect,
-			headingDegrees, nullptr, SDL_FLIP_NONE
-		);*/
 	}
 }
-
-sf::IntRect Aircraft::BoundingBox() const {
-	return dstRect;
-}
-

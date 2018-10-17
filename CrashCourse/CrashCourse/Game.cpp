@@ -3,7 +3,6 @@
 #include "tinyxml2.h"
 
 #include "Game.h"
-#include "Cloud.h"
 #include "InputManager.h"
 #include "AssetManager.h"
 #include "GameStateManager.h"
@@ -11,8 +10,6 @@
 #include "NewHighScoreGS.h"
 #include "MainMenuGS.h"
 #include "HighScoreGS.h"
-
-
 
 Game::Game()
 	: mScreenWidth(700)
@@ -31,25 +28,23 @@ Game::Game()
 
 	mLivesText.setOutlineColor(sf::Color::Black);
 	mPointsText.setOutlineColor(sf::Color::Black);
-	
+
 	mLivesText.setPosition(10, 5);
 	mPointsText.setPosition(333, 5);
 }
 
 Game::~Game()
 {
-	WriteGameSetup();
 }
 
 void Game::Update(float delta)
 {
-if (InputManager::getInstance().wasKeyReleased(InputManager::GK_ESCAPE)) {
-	GameStateManager::getInstance().Change(MainMenuGS::getInstance());
-}
-
-ProcessEvents();
+	if (InputManager::getInstance().wasKeyReleased(InputManager::GK_ESCAPE)) {
+		GameStateManager::getInstance().Change(MainMenuGS::getInstance());
+	}
+	ProcessEvents();
 #pragma region Cloud Updates
-	for (int i = 0; i < mCloudawdadwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwws3.size(); i++) {
+	for (int i = 0; i < mClouds3.size(); i++) {
 		mClouds3[i].Update(delta);
 		mClouds3[i].CalculateTragectory(delta, mShip->getHeading());
 	}
@@ -72,16 +67,12 @@ ProcessEvents();
 	for (std::vector<Aircraft*>::iterator it = mEnemies.begin(); it != mEnemies.end(); it++) {
 		for (std::vector<Bullet*>::iterator bit = mShip->bullets.begin(); bit != mShip->bullets.end(); bit++) {
 			if ((*it)->getActive()) {
-				if ((*bit)->BoundingBox().intersects((*it)->BoundingBox())) {
-					std::cout << (*it)->BoundingBox().left << std::endl;
-					std::cout << (*bit)->BoundingBox().left << std::endl;
+				if ((*bit)->getHitBox().intersects((*it)->getHitBox())) {
 					//Stop piercing bullets
 					(*bit)->Reset();
 					hitHurtSound.play();
-					(*it)->RemoveArmor();
+					(*it)->removeArmor();
 					if ((*it)->getArmor() <= 0) {
-						expPosX = (*it)->BoundingBox().left + (*it)->BoundingBox().width;
-						expPosY = (*it)->BoundingBox().top + (*it)->BoundingBox().height;
 						blowThatShitUp = true;
 						increasePoints();
 						mPointsText.setString("SCORE | " + std::to_string(getPlayerPoints()));
@@ -92,14 +83,12 @@ ProcessEvents();
 			}
 		}
 		if ((*it)->getActive()) {
-			if (mShip->BoundingBox().intersects((*it)->BoundingBox())) {
+			if (mShip->BoundingBox().intersects((*it)->getHitBox())) {
 				(*it)->Reset();
-				std::cout << mShip->BoundingBox().left << std::endl;
-				std::cout << (*it)->BoundingBox().left << std::endl;
 				expPosX = 350;
 				expPosY = 350;
 				blowThatShitUp = true;
-				//Player Lose Life/Game Over
+				//Player Lost Life/Game Over
 				for (std::vector<Aircraft*>::iterator it = mEnemies.begin(); it != mEnemies.end(); it++) {
 					(*it)->Reset();
 				}
@@ -143,7 +132,6 @@ void Game::Draw(sf::RenderWindow & window)
 	//Layer 3
 	if (mShip != nullptr) {
 		mShip->Draw(window);
-		//window.draw(*trail);
 	}
 
 	for (std::vector<Aircraft*>::iterator it = mEnemies.begin(); it != mEnemies.end(); it++) {
@@ -185,9 +173,9 @@ bool Game::LoadMedia()
 		hitHurt = SoundBufferManager::getInstance().getAsset("Assets/Hit_Hurt.wav");
 		hitHurtSound.setBuffer(*hitHurt);
 	}
-	
+
 	if (TextureManager::getInstance().loadAsset("Assets/player_fighter_jet.png")) {
-	
+
 	}
 
 	if (TextureManager::getInstance().loadAsset("Assets/cloud.png")) {
@@ -197,48 +185,47 @@ bool Game::LoadMedia()
 	if (TextureManager::getInstance().loadAsset("Assets/explode5edit.png")) {
 		mSpriteSheet = TextureManager::getInstance().getAsset("Assets/explode5edit.png");
 		mExplosion.texture = mSpriteSheet;
-		//mExplosion.texture = mSpriteSheet;
-		#pragma region SpriteLocations
-					mSprites[0].left = 1;
-					mSprites[0].top = 1;
-					mSprites[0].width = 46;
-					mSprites[0].height = 46;
-		
-					mSprites[1].left = 47;
-					mSprites[1].top = 1;
-					mSprites[1].width = 46;
-					mSprites[1].height = 46;
-		
-					mSprites[2].left = 94;
-					mSprites[2].top = 1;
-					mSprites[2].width = 46;
-					mSprites[2].height = 46;
-		
-					mSprites[3].left = 139;
-					mSprites[3].top = 1;
-					mSprites[3].width = 46;
-					mSprites[3].height = 46;
-		
-					mSprites[4].left = 1;
-					mSprites[4].top = 46;
-					mSprites[4].width = 46;
-					mSprites[4].height = 46;
-		
-					mSprites[5].left = 47;
-					mSprites[5].top = 46;
-					mSprites[5].width = 46;
-					mSprites[5].height = 46;
-		
-					mSprites[6].left = 94;
-					mSprites[6].top = 46;
-					mSprites[6].width = 46;
-					mSprites[6].height = 46;
-		
-					mSprites[7].left = 139;
-					mSprites[7].top = 46;
-					mSprites[7].width = 46;
-					mSprites[7].height = 46;
-		#pragma	endregion
+#pragma region SpriteLocations
+		mSprites[0].left = 1;
+		mSprites[0].top = 1;
+		mSprites[0].width = 46;
+		mSprites[0].height = 46;
+
+		mSprites[1].left = 47;
+		mSprites[1].top = 1;
+		mSprites[1].width = 46;
+		mSprites[1].height = 46;
+
+		mSprites[2].left = 94;
+		mSprites[2].top = 1;
+		mSprites[2].width = 46;
+		mSprites[2].height = 46;
+
+		mSprites[3].left = 139;
+		mSprites[3].top = 1;
+		mSprites[3].width = 46;
+		mSprites[3].height = 46;
+
+		mSprites[4].left = 1;
+		mSprites[4].top = 46;
+		mSprites[4].width = 46;
+		mSprites[4].height = 46;
+
+		mSprites[5].left = 47;
+		mSprites[5].top = 46;
+		mSprites[5].width = 46;
+		mSprites[5].height = 46;
+
+		mSprites[6].left = 94;
+		mSprites[6].top = 46;
+		mSprites[6].width = 46;
+		mSprites[6].height = 46;
+
+		mSprites[7].left = 139;
+		mSprites[7].top = 46;
+		mSprites[7].width = 46;
+		mSprites[7].height = 46;
+#pragma	endregion
 	}
 	return true;
 }
@@ -284,7 +271,7 @@ bool Game::LoadShip()
 		mShip = nullptr;
 	}
 
-	mShip = new Player( sf::Vector2f((float)mScreenWidth/2, (float)mScreenHeight/2), mPlayerTexture);
+	mShip = new Player(sf::Vector2f((float)mScreenWidth / 2, (float)mScreenHeight / 2), mPlayerTexture);
 
 	if (mShip == nullptr) {
 		std::cerr << "*** Failed to create new Aircraft: " << std::endl;
@@ -297,59 +284,11 @@ bool Game::LoadShip()
 void Game::DeSpawn() {
 	//mEnemies.clear();
 }
-
-bool Game::WriteGameSetup() {
-	//tinyxml2::XMLDocument xmlDoc;
-	//tinyxml2::XMLError eResult = xmlDoc.LoadFile("SavedData.xml");
-	//if (eResult != tinyxml2::XML_SUCCESS) { xmlDoc.NewElement("SaveData"); }
-
-	//tinyxml2::XMLNode* pRoot = xmlDoc.FirstChild();
-	//if(pRoot == nullptr) {
-	//	pRoot = xmlDoc.NewElement("SaveData");
-	//	xmlDoc.InsertFirstChild(pRoot);
-	//	xmlDoc.InsertFirstChild(pRoot);
-
-	//	tinyxml2::XMLElement* pElement = xmlDoc.NewElement("GameData");
-	//	pRoot->InsertEndChild(pElement);
-	//	//tinyxml2::XMLElement * pElement = xmlDoc.NewElement("GameData");
-	//	//Lives
-	//	//Score
-	//	pElement->SetAttribute("Lives", getPlayerLives());
-	//	pElement->SetAttribute("Points", getPlayerPoints());
-	//	pRoot->InsertEndChild(pElement);
-	//}
-	//else {
-	//	tinyxml2::XMLElement* pElement = pRoot->FirstChildElement();
-	//	if(pElement != nullptr) { 
-	//		pElement = xmlDoc.NewElement("GameData"); 
-	//		pRoot->InsertEndChild(pElement);
-	//		pElement->SetAttribute("Lives", getPlayerLives());
-	//		pElement->SetAttribute("Points", getPlayerPoints());
-	//		pRoot->InsertEndChild(pElement);
-	//	}
-	//	else {
-	//		pElement->DeleteAttribute("Lives");
-	//		pElement->DeleteAttribute("Points");
-	//		pElement->SetAttribute("Lives", getPlayerLives());
-	//		pElement->SetAttribute("Points", getPlayerPoints());
-	//		pRoot->InsertEndChild(pElement);
-	//	}
-	//	//tinyxml2::XMLElement * pElement = xmlDoc.NewElement("GameData");
-	//	//Lives
-	//	//Score
-	//}
-	//eResult = xmlDoc.SaveFile("SavedData.xml");
-	//if (eResult != tinyxml2::XML_SUCCESS) {
-	//	return false;
-	//}
-	return true;
-}
-
 void Game::Init()
 {
 	mLivesText.setString("LIVES | " + std::to_string(getPlayerLives()));
 	mPointsText.setString("SCORE | " + std::to_string(getPlayerPoints()));
-	
+
 	std::cout << playerLives << std::endl;
 	media = LoadMedia();
 	if (!&media) {

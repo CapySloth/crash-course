@@ -7,40 +7,36 @@ class Aircraft
 {
 	int mArmor;
 
-	float velX;
-	float velY;
-
+	sf::Vector2f mVelocity;
+	sf::Vector2f mDirection;
+	sf::Vector2f mPosition;
 	float mHeading;
 
-	float mDirX;
-	float mDirY;
-
-	sf::Vector2f mPos;
+	sf::IntRect dstRect;//HitBox
 	sf::Texture *mTexture;
 
 	bool active;
-
-	sf::IntRect dstRect;
-
 public:
 	Aircraft();
 	~Aircraft();
 
-	Aircraft(int armor, float speedX, float speedY, float dir, sf::Vector2f pos, sf::Texture *texture);
+	Aircraft(int armor,sf::Vector2f speed, float dir, sf::Vector2f pos, sf::Texture *texture);
 
 	std::vector<Bullet*> bullets;
 
-	int GetArmor() { return mArmor; }
-	void ReduceArmor() { mArmor--; }
-	float GetVelocityX() { return velX; }
-	float GetVelocityY() { return velY; }
+	int getArmor() { return mArmor; }
 
-	sf::Vector2f getPosition() const;
-	void setPosition(sf::Vector2f pos);
+	sf::Vector2f getVelocity() { return mVelocity; }
+	sf::Vector2f getPosition() { return mPosition; }
+	sf::IntRect getHitBox() { return dstRect; }
+
+	bool getActive() const { return active; };
 
 	void setActive(bool act) { active = act; };
-	bool getActive() const { return active; };
-	sf::IntRect BoundingBox() const;
+	void setPosition(sf::Vector2f pos) { mPosition = pos; }
+	void removeArmor() { mArmor--; }
+
+
 
 	void Move();
 	void Fire();
@@ -50,10 +46,6 @@ public:
 	void Update(float delta, float mHeading);
 
 	void Draw(sf::RenderWindow & window);
-
-	void RemoveArmor() { mArmor--; };
-
-	int getArmor() const { return mArmor; };
 
 	void setArmor(int armor) { mArmor = armor; };
 };

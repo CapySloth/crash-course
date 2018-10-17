@@ -1,3 +1,4 @@
+
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio/SoundBuffer.hpp>
@@ -20,23 +21,14 @@ public:
 	void Draw(sf::RenderWindow & window);
 
 	float getHeading() { return  mHeading; }
-	//float getVelocityX() { return mVelocityX; }
-	//float getVelocityY() { return mVelocityY; }kat
-	sf::Vector2f GetVelocity();
-
 
 	void CreateBullets(float delta);
 
 	sf::IntRect Player::BoundingBox() const;
 
-	float getVelocityX() { return mVelocityX; }
-	float getVelocityY() { return mVelocityY; }
+	sf::Vector2f getPosition() { return mPosition; }
 private:
-	float mPositionX;
-	float mPositionY;
-
-	float mVelocityX;
-	float mVelocityY;
+	sf::Vector2f mPosition;
 
 	float mHeading;
 	int fireRate;
@@ -44,6 +36,5 @@ private:
 
 	sf::Texture *mTexture;
 	sf::IntRect dstRect;
-	sf::Text mTestText;
 };
 

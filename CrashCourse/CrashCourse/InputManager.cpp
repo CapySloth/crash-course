@@ -21,8 +21,7 @@ bool InputManager::wasKeyReleased(GameKey gk) {
 void InputManager::Update(sf::Window &window) {
 	//The old current state is now the new previous state
 	mPreviousKeyState.swap(mCurrentKeyState);
-	//Iterate through each game key and get the corresponding SFML Key code
-	// that is mapped to that game key.
+	//Iterate through each game key and get the corresponding SFML Key code that is mapped to that game key.
 	for (int k = 0; k < GK_COUNT; ++k) {
 		sf::Keyboard::Key key = mKeyMap[static_cast<GameKey>(k)];
 		mCurrentKeyState[key] = sf::Keyboard::isKeyPressed(key);

@@ -1,14 +1,18 @@
-#include "Bullet.h"
-#include "Utils.h"
-#include "Entity.h"
 #include <cmath>
 #include <iostream>
 
+#include "Bullet.h"
+#include "Utils.h"
+#include "Entity.h"
+
 const int Bullet::msDefaultWidth = 5;
 const int Bullet::msDefaultHeight = 5;
+
 const sf::Vector2f mVelocity = { 2, 2 };
-const sf::Color	Bullet::msDefaultColor = { 255, 255, 255, 255 };		// white
+
+const sf::Color	Bullet::msDefaultColor = { 255, 255, 255, 255 };// white
 int i = 0;
+
 Bullet::Bullet()
 	: mRect()
 	, mColor()
@@ -23,26 +27,6 @@ Bullet::Bullet()
 	mRect.left = 100;
 	mVelocity;
 }
-
-float Bullet::GetVelocityX() {
-	return mVelocity.x;
-}
-float Bullet::GetVelocityY() {
-	return mVelocity.y;
-}
-
-sf::Vector2f Bullet::GetVelocity() {
-	return mVelocity;
-}
-void Bullet::SetVelocity(float vx, float vy) {
-	mVelocity.x = vx;
-	mVelocity.y = vy;
-}
-
-void Bullet::SetVelocity(sf::Vector2f velocity) {
-	mVelocity = velocity;
-}
-
 void Bullet::Reset()
 {
 	mRect.left = -500;
@@ -57,9 +41,9 @@ void Bullet::Reset()
 void Bullet::Move()
 {
 	////Move the bullet on X axis
-	mRect.left += GetVelocityX();
+	mRect.left += getVelocity().x;
 	////Move the bullet on Y axis
-	mRect.top += GetVelocityY();
+	mRect.top += getVelocity().y;
 
 	//If the dot collided or went too far up or down
 	//CheckCollision(mRect, object);
@@ -73,11 +57,6 @@ void Bullet::CalculateTragectory(float delta, float mHeading) {
 	//Calculate velocity for this frame
 	mVelocity.x = dirX  * delta * 500;
 	mVelocity.y = dirY  * delta * 500;
-}
-
-sf::IntRect Bullet::BoundingBox() const
-{
-	return mRect;
 }
 
 void Bullet::Update(float delta)

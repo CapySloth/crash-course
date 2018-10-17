@@ -13,13 +13,10 @@ GameStateManager::GameStateManager()
 {
 	static int count = 0;
 	++count;
-	std::cout << "Count: " << count << std::endl;
 }
 
 
-GameStateManager::~GameStateManager()
-{
-}
+GameStateManager::~GameStateManager() {}
 
 int GameStateManager::Play()
 {
@@ -29,8 +26,6 @@ int GameStateManager::Play()
 	int const WINDOW_HEIGHT = 700;
 	sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Game State Management");
 	InputManager &input = InputManager::getInstance();
-
-	
 
 	//Clock management
 	bool drawRequested = false;

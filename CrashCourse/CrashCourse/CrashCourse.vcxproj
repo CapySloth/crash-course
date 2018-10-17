@@ -173,7 +173,6 @@
     <ClInclude Include="Animated.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="Bullet.h" />
-    <ClInclude Include="ButtonTestGS.h" />
     <ClInclude Include="Cloud.h" />
     <ClInclude Include="ColorHelper.h" />
     <ClInclude Include="Die.h" />

@@ -1,18 +1,17 @@
 #include "Player.h"
 #include "InputManager.h"
-#include "AssetManager.h"
-#include "Game.h"
-#define USE_MATH_DEFINES
 #include <math.h>
 #include <iostream>
 #include <SFML\Audio\SoundBuffer.hpp>
 #include <SFML\Audio\Sound.hpp>
 
+#include "AssetManager.h"
+#include "Game.h"
+
+#define USE_MATH_DEFINES
 
 Player::Player(sf::Vector2f position, sf::Texture * texture)
-	: mPositionX(position.x), mPositionY(position.y),
-	mVelocityX(0.0f),
-	mVelocityY(0.0f),
+	: mPosition(position.x, position.y),
 	mHeading(0.0f),
 	fireRate(5),
 	maxBullets(60),
@@ -23,9 +22,6 @@ Player::Player(sf::Vector2f position, sf::Texture * texture)
 		shot = SoundBufferManager::getInstance().getAsset("Assets/Shot.wav");
 	}
 	sound.setBuffer(*shot);
-	mTestText.setPosition(333, 100);
-	mTestText.setCharacterSize(24);
-	mTestText.setFillColor(sf::Color::White);
 }
 
 Player::~Player()
@@ -38,21 +34,21 @@ void Player::CreateBullets(float delta) {
 	if (fireRate < 0) {
 		if (bullets.size() <= maxBullets) {
 			Bullet* bullet = new Bullet();
-			bullet->SetLeft((int)mPositionX);
-			bullet->SetTop((int)mPositionY);
+			bullet->setLeft((int)mPosition.x);
+			bullet->setTop((int)mPosition.y);
 			bullet->CalculateTragectory(delta, mHeading);
-			bullet->SetActive(true);
+			bullet->setActive(true);
 			bullets.push_back(bullet);
 			fireRate = 5;
 		}
 		else {
 			/* If max number of bullets is reached, then start reusing inactive bullets */
 			for (int i = 0; i < bullets.size(); i++) {
-				if (!bullets[i]->GetActive()) {
-					bullets[i]->SetLeft((int)mPositionX);
-					bullets[i]->SetTop((int)mPositionY);
+				if (!bullets[i]->getActive()) {
+					bullets[i]->setLeft((int)mPosition.x);
+					bullets[i]->setTop((int)mPosition.y);
 					bullets[i]->CalculateTragectory(delta, mHeading);
-					bullets[i]->SetActive(true);
+					bullets[i]->setActive(true);
 					std::cout << i << std::endl;
 					fireRate = 5;
 					break;
@@ -82,7 +78,7 @@ void Player::Update(float delta)
 	}
 	
 	for (int i = 0; i < bullets.size(); i++) {
-		if (bullets[i]->GetActive()) {
+		if (bullets[i]->getActive()) {
 			bullets[i]->Move();
 			bullets[i]->Update(delta);
 		}
@@ -91,9 +87,8 @@ void Player::Update(float delta)
 
 void Player::Draw(sf::RenderWindow & window)
 {
-	
-	dstRect.left = (int)mPositionX - dstRect.width / 2;
-	dstRect.top = (int)mPositionY - dstRect.height / 2;
+	dstRect.left = (int)mPosition.x - dstRect.width / 2;
+	dstRect.top = (int)mPosition.y - dstRect.height / 2;
 	
 	float headingDegrees = mHeading * 180.0f / 3.14f;
 	sf::RectangleShape player(sf::Vector2f((float)dstRect.width, (float)dstRect.height));
@@ -101,15 +96,11 @@ void Player::Draw(sf::RenderWindow & window)
 	player.setPosition(350, 350);
 	player.setRotation(headingDegrees);
 	player.setOrigin((float)dstRect.width/2, (float)dstRect.height/2);
-	/*sf::RectangleShape boxCollider(sf::Vector2f(dstRect.width, dstRect.height));
-	boxCollider.setPosition(dstRect.left, dstRect.top);
-	boxCollider.setFillColor(sf::Color::Green);
-	window.draw(boxCollider);*/
 	window.draw(player);
 
 	for (int i = 0; i < bullets.size(); i++)
 	{
-		if (bullets[i]->GetActive()) {
+		if (bullets[i]->getActive()) {
 			bullets[i]->Draw(window);
 		}
 	}

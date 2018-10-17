@@ -11,11 +11,9 @@ private:
 public:
 	AGameState(bool opaque = true) : mOpaque(opaque), mPaused(false) {
 	}
-
 	bool isOpaque() {
 		return mOpaque;
 	}
-
 	virtual void Update(float delta) = 0;
 	virtual void Draw(sf::RenderWindow &window) = 0;
 	virtual void Init() = 0;
@@ -30,5 +28,4 @@ public:
 	virtual bool isPaused() {
 		return mPaused;
 	}
-
 };
